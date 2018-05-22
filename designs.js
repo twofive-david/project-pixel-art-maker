@@ -21,11 +21,11 @@ function makeGrid (gridWidth, gridHeight) {
 
 	table.innerHTML = '';
 
-	for(let w = 0; w < gridWidth.value; w++) {
+	for(let w = 0; w < gridHeight.value; w++) {
 		let row = document.createElement('tr');
 		table.append(row);
 		
-		for(let h = 0; h < gridHeight.value; h++) {
+		for(let h = 0; h < gridWidth_é.value; h++) {
 		let data = document.createElement('td');
 		row.append(data);
 
