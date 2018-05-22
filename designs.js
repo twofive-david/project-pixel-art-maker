@@ -1,12 +1,18 @@
+
 // Selecting variables
+
+// Select color input
+// Select size input
+
 
 const gridHeight = document.getElementById('inputHeight');
 const gridWidth = document.getElementById('inputWeight');
 const submitButton = document.querySelector('input[type=submit]');
-	//const row = document.createElement('tr');  ---why this doesnt work? is it because theis is later used as parameters of the append method?
-	//const data = document.createElement('td'); ---why this doesnt work? is it because theis is later used as parameters of the append method?
+//const row = document.createElement('tr');  ---why this doesnt work? is it because theis is later used as parameters of the append method?
+//const data = document.createElement('td'); ---why this doesnt work? is it because theis is later used as parameters of the append method?
 
-//The function which creates the grid
+// When size is submitted by the user, call makeGrid()
+
 
 function makeGrid (gridWidth, gridHeight) {
 
@@ -15,11 +21,11 @@ function makeGrid (gridWidth, gridHeight) {
 
 	table.innerHTML = '';
 
-	for(let w = 1; w <= gridWidth.value; w++) {
+	for(let w = 0; w < gridWidth.value; w++) {
 		let row = document.createElement('tr');
 		table.append(row);
 		
-		for(let h = 1; h <= gridHeight.value; h++) {
+		for(let h = 0; h < gridHeight.value; h++) {
 		let data = document.createElement('td');
 		row.append(data);
 
