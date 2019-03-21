@@ -28,8 +28,12 @@ function main() {
 
 	function paintCells() {
 		const colorChoice = document.getElementById('colorPicker');
-		table.addEventListener('click', (e) => {
-			if (e.target.className === "tableCell") {
+		let mouseIsDown = false;
+		table.addEventListener('mousedown', () => { mouseIsDown = true; });
+		table.addEventListener('mouseup', () => { mouseIsDown = false; });
+
+		table.addEventListener('mouseover', (e) => {
+			if (e.target.className === "tableCell" && mouseIsDown) {
 				e.target.style.backgroundColor = colorChoice.value;
 			}
 		});
