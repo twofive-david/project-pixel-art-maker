@@ -1,45 +1,47 @@
+'use strict'
 
-// Selecting variables
+function main() {
 
-// Select color input
-// Select size input
-
-
-const gridHeight = document.getElementById('inputHeight');
-const gridWidth = document.getElementById('inputWeight');
-const submitButton = document.querySelector('input[type=submit]');
-//const row = document.createElement('tr');  ---why this doesnt work? is it because theis is later used as parameters of the append method?
-//const data = document.createElement('td'); ---why this doesnt work? is it because theis is later used as parameters of the append method?
-
-// When size is submitted by the user, call makeGrid()
-
-
-function makeGrid (gridWidth, gridHeight) {
-
+	const gridHeight = document.getElementById('inputHeight');
+	const gridWidth = document.getElementById('inputWeight');
+	const submitButton = document.querySelector('input[type=submit]');
 	const table = document.getElementById('pixelCanvas');
-	const colorChoice = document.getElementById('colorPicker');
 
-	table.innerHTML = '';
+	function resetCanvasAndColor() {
+		let colorPicker = document.forms[0].colorPicker;
+		table.innerHTML = '';
+		colorPicker.value = '#000000';
+	}
 
-	for(let w = 0; w < gridHeight.value; w++) {
-		let row = document.createElement('tr');
-		table.append(row);
-		
-		for(let h = 0; h < gridWidth_é.value; h++) {
-		let data = document.createElement('td');
-		row.append(data);
+	function makeGrid(gridWidth, gridHeight) {
+		for (let w = 0; w < gridHeight.value; w++) {
+			let row = document.createElement('tr');
+			table.append(row);
 
-		data.addEventListener('click', function() {
-			data.style.backgroundColor = colorChoice.value;
+			for (let h = 0; h < gridWidth.value; h++) {
+				let cell = document.createElement('td');
+				cell.className = "tableCell";
+				row.append(cell);
+			};
+		};
+	}
+
+	function paintCells() {
+		const colorChoice = document.getElementById('colorPicker');
+		table.addEventListener('click', (e) => {
+			if (e.target.className === "tableCell") {
+				e.target.style.backgroundColor = colorChoice.value;
+			}
 		});
-	}};
+	}
 
-};
+	submitButton.addEventListener('click', function (event) {
+		event.preventDefault();
+		resetCanvasAndColor();
+		makeGrid(gridWidth, gridHeight);
+		paintCells();
+	});
+}
 
-// Clicking the submit button will prevent the page from reloading and will call the makeGrid function
-
-submitButton.addEventListener('click', function(event) {
-	event.preventDefault();
-	makeGrid (gridWidth, gridHeight);
-});
+main();
 
